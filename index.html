@@ -572,7 +572,7 @@ footer{border-top:1px solid var(--line);overflow:hidden}
         <div class="halo" style="background:var(--g-fire)"></div>
         <div class="sg-face" style="background:linear-gradient(#161618,#161618) padding-box,var(--g-fire) border-box">
           <div class="sg-media">
-            <img src="assets/signed/mass-eto.jpg" alt="Modoulamin Mass in ETO FC Győr kit" loading="lazy"/>
+            <img src="assets/signed/mass-eto.jpg" alt="Modoulamin Mass in ETO FC Győr kit" loading="lazy" style="object-position:center 12%"/>
             <div class="sg-official">★ Official · Signed</div>
           </div>
           <div class="sg-body">
@@ -1033,7 +1033,7 @@ function heroIntro(){
   gsap.timeline({ defaults: { ease: 'power4.out' } })
     .to('.hero-title .line > span', { y: 0, duration: 1.2, stagger: .13 })
     .to('#hero [data-reveal]', { opacity: 1, y: 0, duration: 1, stagger: .1 }, '-=0.75')
-    .from('#nav', { y: -40, opacity: 0, duration: .8 }, '-=0.9');
+    .from('.nav-inner', { y: -40, opacity: 0, duration: .8, clearProps: 'all' }, '-=0.9');
   animateMap();
 }
 
