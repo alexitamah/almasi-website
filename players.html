@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Players — Almasi Football Academy</title>
+<meta name="description" content="Almasi Football Academy develops elite youth football talent from across Africa. Scout-first. Veo-filmed. U13–U19. HQ in Abuja, Nigeria."/>
+<link rel="icon" type="image/png" href="assets/brand/almasi-crest.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/site.css"/>
+</head>
+<body>
+
+
+<div class="grain"></div>
+<div class="cursor"><div class="cursor-ring"></div><div class="cursor-dot"></div></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand" data-hover>
+      <img src="assets/brand/almasi-crest.png" alt="Almasi crest"/>
+      <b>ALMASI <em>FA</em></b>
+    </a>
+    <div class="nav-links">
+      <a href="story.html" data-hover>Story</a>
+      <a href="matches.html" data-hover>Matches</a>
+      <a href="gallery.html" data-hover>Gallery</a>
+      <a href="players.html" class="active" aria-current="page" data-hover>Players</a>
+      <a href="https://www.instagram.com/almasifootballacademy/" target="_blank" rel="noopener" title="Instagram" data-hover style="padding:10px 12px;display:flex">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="scouts.html" class="cta" data-hover>For Scouts</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mmenu">
+  <a href="story.html"><em>01</em>Story</a>
+  <a href="matches.html"><em>02</em>Matches</a>
+  <a href="gallery.html"><em>03</em>Gallery</a>
+  <a href="players.html" class="active" aria-current="page"><em>04</em>Players</a>
+  <a href="scouts.html" style="color:var(--orange-hot)"><em>05</em>For Scouts</a>
+  <a href="https://www.instagram.com/almasifootballacademy/" target="_blank" rel="noopener"><em>06</em>Instagram</a>
+</div>
+
+<!-- PLAYERS — ROSTER -->
+<section id="players" class="page-first">
+  <div class="wrap">
+    <div class="roster-head">
+      <div>
+        <div class="kicker" data-reveal><img src="assets/brand/almasi-crest.png" alt=""/><span>The Squad</span></div>
+        <h2 class="h2"><span class="mask-line"><span>Player <span class="serif">profiles.</span></span></span></h2>
+      </div>
+      <div class="roster-count" data-reveal><b id="roster-n">22</b> players shown · scouted from <b>7</b> nations</div>
+    </div>
+    <div class="filters" data-reveal id="filters">
+      <button class="fchip active" data-group="all" data-hover>All</button>
+      <button class="fchip" data-group="Goalkeeper" data-hover>Goalkeepers</button>
+      <button class="fchip" data-group="Defender" data-hover>Defenders</button>
+      <button class="fchip" data-group="Midfielder" data-hover>Midfielders</button>
+      <button class="fchip" data-group="Forward" data-hover>Forwards</button>
+      <select class="fsel" id="f-nation" data-hover><option value="all">All nations</option></select>
+      <select class="fsel" id="f-year" data-hover><option value="all">All birth years</option></select>
+    </div>
+    <div class="roster" id="roster"></div>
+    <div class="roster-empty" id="roster-empty">No players match that filter — try widening it.</div>
+    <div class="notify" data-reveal>
+      <div>
+        <h4>📩 Scout updates</h4>
+        <p>New profiles, stats and Veo highlights — straight to your inbox.</p>
+      </div>
+      <div class="notify-row">
+        <input class="inp" type="email" placeholder="Your email address" id="notify-email"/>
+        <button class="btn btn-solid" onclick="notifyMe()" data-hover><i class="fill"></i><span>Notify Me</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAYER MODAL -->
+<div id="pmodal" role="dialog" aria-modal="true">
+  <div class="pm-shell">
+    <div class="pm-halo"></div>
+    <div class="pm-card">
+      <button class="pm-close" id="pm-close" data-hover aria-label="Close">×</button>
+      <div class="pm-photo">
+        <img id="pm-img" src="" alt=""/>
+        <div class="pm-thumbs" id="pm-thumbs"></div>
+      </div>
+      <div class="pm-body">
+        <div class="pm-flag" id="pm-flag"></div>
+        <h3 class="pm-name" id="pm-name"></h3>
+        <div class="pm-pos" id="pm-pos"></div>
+        <div class="pm-stats">
+          <div class="pm-stat"><em>Nationality</em><b id="pm-nation"></b></div>
+          <div class="pm-stat"><em>Born</em><b id="pm-yob"></b></div>
+          <div class="pm-stat"><em>Position</em><b id="pm-pos2"></b></div>
+          <div class="pm-stat"><em>Status</em><b id="pm-status" style="color:#2fd573">Available for trials</b></div>
+        </div>
+        <p class="pm-note">Full dossier — <b>Veo match footage, verified stats, passport status and agent contact</b> — is available to verified scouts and clubs on request.</p>
+        <div class="pm-actions">
+          <button class="btn btn-solid" id="pm-request" data-hover><i class="fill"></i><span>Request Full Profile</span><span>→</span></button>
+          <a class="btn btn-ghost" href="https://wa.me/2347046385335" target="_blank" rel="noopener" data-hover><i class="fill"></i><span>WhatsApp</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEXT PAGE -->
+<section class="next-page">
+  <div class="wrap">
+    <a class="np-link" href="scouts.html" data-hover>
+      <div><span class="np-label">Next page</span><span class="h2">For <span class="serif">scouts</span></span></div>
+      <span class="np-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">
+          <img src="assets/brand/almasi-crest.png" alt="Almasi crest"/>
+          Almasi Football Academy
+        </div>
+        <p class="foot-tag">Elite youth football development. HQ in Abuja, Nigeria — talent from all over Africa. Serving scouts, agents and clubs worldwide.</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/almasifootballacademy/" target="_blank" rel="noopener" class="social" title="Instagram" data-hover>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@almasi.football.a" target="_blank" rel="noopener" class="social" title="TikTok" data-hover>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.78a4.85 4.85 0 01-1.02-.09z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="story.html" data-hover>Story</a></li>
+          <li><a href="matches.html" data-hover>Match Highlights</a></li>
+          <li><a href="gallery.html" data-hover>Gallery</a></li>
+          <li><a href="players.html" data-hover>Players</a></li>
+          <li><a href="scouts.html" data-hover>For Scouts</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Academy</h5>
+        <ul>
+          <li><a href="story.html" data-hover>Our Mission</a></li>
+          <li><a href="scouts.html#why" data-hover>Why Almasi</a></li>
+          <li><a href="story.html#pipeline" data-hover>Pan-African Pipeline</a></li>
+          <li><a href="mailto:almasifootballacademy@gmail.com" data-hover>Trials Enquiries</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <div class="foot-contact">
+          <div class="fc"><span>📍</span><span>54 Nwafor Orizu, National Assembly Quarters, FCT Abuja, Nigeria</span></div>
+          <div class="fc"><span>📞</span><a href="tel:+2347046385335">+234 704 638 5335</a></div>
+          <div class="fc"><span>✉️</span><a href="mailto:almasifootballacademy@gmail.com">almasifootballacademy@gmail.com</a></div>
+          <div class="fc"><span>💬</span><a href="https://wa.me/2347046385335" target="_blank" rel="noopener">WhatsApp the Director</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 Almasi Football Academy · HQ Abuja, Nigeria</p>
+      <p>Built for <span>African football</span></p>
+    </div>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/2347046385335" target="_blank" rel="noopener" class="wa-float" title="WhatsApp the Director" data-hover>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.557 4.126 1.527 5.862L.057 23.5l5.806-1.524A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.5-5.197-1.375l-.37-.219-3.845 1.009 1.028-3.758-.239-.388A9.954 9.954 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>
